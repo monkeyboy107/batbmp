@@ -1,0 +1,12 @@
+ssh_public_key:
+  full_name: Isaac Kerley
+  name: kerley
+  ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMqYTkHy2tbOHgyWxycUrTDo3I7AejQHa/YzjKfMdEz kerley@ihs-van-house-02.monkeyboy107.com
+mirror:
+  protocol: http
+  host: ihs-mirror-01
+os
+  distro: rocky
+  version: 9.6
+  appstream: "AppStream"
+  arch: x86_64

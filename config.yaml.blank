@@ -1,0 +1,12 @@
+ssh_public_key:
+  full_name: 
+  name: 
+  ssh_public_key:
+mirror:
+  protocol:
+  host:
+os
+  distro:
+  version:
+  appstream:
+  arch:

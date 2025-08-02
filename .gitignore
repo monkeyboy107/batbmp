@@ -208,3 +208,6 @@ __marimo__/
 
 # vim
 *.swp
+
+# Configs
+config.yaml
