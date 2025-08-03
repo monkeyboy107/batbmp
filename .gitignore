@@ -213,4 +213,4 @@ __marimo__/
 config.yaml
 
 # db
-instance/*.db
+*.db
