@@ -1,17 +1,30 @@
 import unittest
+import os
 from utils import database
 
-class render_template(unittest.TestCase):
-  def test_database(self):
-    engine = database.generate_engine('sqlite:///file.db')
-    db = database.db(engine)
+class database_tests(unittest.TestCase):
+  @classmethod
+  def setUpClass(cls):
+    cls.example_mac = 'ab:cd:ef:12:34:56'
+    cls.db_path = 'test.db'
+    cls.engine = database.generate_engine(f'sqlite:///{cls.db_path}')
+    cls.db = database.db(cls.engine)
+  
+  @classmethod
+  def tearDownClass(cls):
+    os.remove(cls.db_path)
     
-    example_mac = 'ab:cd:ef:12:34:56'
-    db.add_host(example_mac)
+  def retrieve_database_without_populating(cls):
+    host = self.db.find_host(cls.example_mac)
+    self.assertTrue(len(host) == 0)
+    self.assertFalse(host[0].mac == cls.example_mac)
     
-    host = db.find_host(example_mac).all()
-    self.assertTrue(len(host) == 1)
-    self.assertEqual(host[0].mac, example_mac)
+  def test_creating_and_retrieving_data(cls):
+    cls.db.add_host(cls.example_mac)
+    
+    host = cls.db.find_host(cls.example_mac).all()
+    cls.assertTrue(len(host) == 1)
+    cls.assertEqual(host[0].mac, cls.example_mac)
 
 if __name__ == '__main__':
   unittest.main()
