@@ -15,16 +15,15 @@ class database_tests(unittest.TestCase):
     os.remove(cls.db_path)
     
   def retrieve_database_without_populating(cls):
-    host = self.db.find_host(cls.example_mac)
-    self.assertTrue(len(host) == 0)
-    self.assertFalse(host[0].mac == cls.example_mac)
+    host = cls.db.find_host(cls.example_mac)
+    cls.assertTrue(len(host) == 0)
+    cls.assertFalse(host[0].mac == cls.example_mac)
     
   def test_creating_and_retrieving_data(cls):
     cls.db.add_host(cls.example_mac)
     
-    host = cls.db.find_host(cls.example_mac).all()
-    cls.assertTrue(len(host) == 1)
-    cls.assertEqual(host[0].mac, cls.example_mac)
+    host = cls.db.find_host(cls.example_mac)['host']
+    cls.assertEqual(host.mac, cls.example_mac)
 
 if __name__ == '__main__':
   unittest.main()
