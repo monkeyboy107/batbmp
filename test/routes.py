@@ -1,7 +1,7 @@
 import unittest
 import os
 import asyncio
-from dependencies import db
+import dependencies
 from utils import database
 from routers import kickstart, register
 
@@ -10,15 +10,15 @@ class routes_tests(unittest.IsolatedAsyncioTestCase):
   def setUp(cls):
     cls.example_mac = 'ab:cd:ef:12:34:56'
     cls.db_path = 'test.db'
-    db.engine = database.generate_engine(f'sqlite:///{cls.db_path}')
-    db.db = database.db(db.engine)
+    dependencies.settings['engine'] = database.generate_engine(f'sqlite:///{cls.db_path}')
+    dependencies.settings['database'] = database.db(dependencies.settings['engine'])
   
   @classmethod
   def tearDown(cls):
     os.remove(cls.db_path)
         
   async def test_kickstart(self):
-    db.add_host(self.example_mac)
+    dependencies.settings['database'].add_host(self.example_mac)
     host = kickstart.retrieve_kickstart(self.example_mac) 
     host = await host
     self.assertEqual(host, self.example_mac)
