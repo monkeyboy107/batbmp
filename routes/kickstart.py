@@ -2,9 +2,9 @@ from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
 import yaml
 
-route = Blueprint('simple_page', __name__, template_folder='templates')
+kickstart = Blueprint('kickstart', __name__, template_folder='templates')
 
-@route.route('/register/<mac>')
+@kickstart.route('/kickstart/<mac>')
 def show(mac):
   with open('config.yaml') as stream:
     config = yaml.safe_load(stream)

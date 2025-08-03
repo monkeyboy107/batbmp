@@ -5,8 +5,10 @@ ssh_public_key:
 mirror:
   protocol:
   host:
-os
+os:
   distro:
   version:
   appstream:
   arch:
+host:
+  name:
