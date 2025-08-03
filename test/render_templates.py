@@ -1,8 +1,7 @@
 import unittest
-from template import templates
+from utils import templates
 
 class render_template(unittest.TestCase):
-  
   def test_render(self):
     kwargs = {
     'mirror': {

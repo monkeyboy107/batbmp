@@ -15,7 +15,7 @@ class loader(BaseLoader):
     return data, path, lambda: mtime == getmtime(path)
 
 env = Environment(
-  loader=loader('template/templates'),
+  loader=loader('templates'),
   autoescape=select_autoescape()
 )
 
