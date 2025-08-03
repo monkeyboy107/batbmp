@@ -210,4 +210,4 @@ __marimo__/
 *.swp
 
 # Configs
-config.yaml
+routes/config.yaml
