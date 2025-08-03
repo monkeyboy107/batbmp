@@ -1,15 +1,6 @@
-from flask import Flask
-from routes.kickstart import kickstart
-from db import connect
+from fastapi import FastAPI
+from routers import kickstart
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///project.db"
+app = FastAPI()
 
-app.register_blueprint(kickstart)
-connect.db.init_app(app)
-
-with app.app_context():
-  connect.db.create_all()
-
-if '__main__' == __name__:
-  app.run()
+app.include_router(kickstart.router)
