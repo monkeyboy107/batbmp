@@ -6,6 +6,7 @@ kickstart = Blueprint('kickstart', __name__, template_folder='templates')
 
 @kickstart.route('/kickstart/<mac>')
 def show(mac):
+  return kickstart.app_context()
   with open('config.yaml') as stream:
     config = yaml.safe_load(stream)
   return render_template('kickstart.conf.j2', **config)
