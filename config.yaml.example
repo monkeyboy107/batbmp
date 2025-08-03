@@ -1,7 +1,7 @@
-ssh_public_key:
-  full_name: 
-  name: 
-  ssh_public_key: 
+users:
+  -  full_name: 
+     name: 
+     ssh_public_key: 
 mirror:
   protocol: 
   host: 
