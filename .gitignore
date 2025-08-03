@@ -211,3 +211,6 @@ __marimo__/
 
 # Configs
 config.yaml
+
+# db
+instance/*.db
