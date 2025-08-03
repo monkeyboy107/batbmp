@@ -9,4 +9,7 @@ router = APIRouter()
 @router.get('/kickstart/{mac}/', tags=['kickstart'])
 async def retrieve_kickstart(mac, response_class=ORJSONResponse):
    host = db.find_host(mac)
-   return host['host']['mac']
+   if host['status'] == 'Success':
+     return host['host']['mac']
+   else:
+    return '404'
