@@ -3,8 +3,8 @@ import os
 from utils import database
 
 settings_paths = [
-'./config.yaml.example'
-'/etc/batbmp/config/yaml',
+'./config.yaml.example',
+'/etc/batbmp/config.yaml',
 './config.yaml'
 ]
 
