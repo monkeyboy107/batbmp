@@ -18,7 +18,13 @@ class routes_tests(unittest.IsolatedAsyncioTestCase):
     os.remove(cls.db_path)
         
   async def test_kickstart(self):
-    dependencies.settings['database'].add_host(self.example_mac)
+    config = {
+     'users': dependencies.settings['users'],
+     'mirror': dependencies.settings['mirror'],
+     'os': dependencies.settings['os'],
+     'host': dependencies.settings['host']
+    }
+    dependencies.settings['database'].add_host(self.example_mac, config)
     host = kickstart.retrieve_kickstart(self.example_mac) 
     host = await host
     self.assertEqual(host, self.example_mac)

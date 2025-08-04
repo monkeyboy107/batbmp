@@ -8,10 +8,10 @@ router = APIRouter()
 async def register_host(mac):
    dependencies.settings = dependencies.load_settings()
    config = {
-     'users': dependencies['users'],
-     'mirror': dependencies['mirror'],
-     'os': dependencies['os'],
-     'host': dependencies['name']
+     'users': dependencies.settings['users'],
+     'mirror': dependencies.settings['mirror'],
+     'os': dependencies.settings['os'],
+     'host': dependencies.settings['host']
    }
    host = dependencies.settings['database'].add_host(mac, config)
    return host
