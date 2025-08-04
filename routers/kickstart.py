@@ -11,10 +11,6 @@ router = APIRouter()
 async def retrieve_kickstart(mac):
   host = dependencies.settings['database'].find_host(mac)
   if host['status'] == 'Success':
-    env = Environment(
-      loader=templates.loader,
-      autoescape=select_autoescape()
-    )
     config = json.loads(host['host']['config'])
     return templates.render_template('kickstart.conf.j2', **config)
   else:
