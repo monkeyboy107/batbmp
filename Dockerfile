@@ -4,11 +4,11 @@ ARG base_tag=3.12
 # Possible classification is public_release public_test private_release private_test
 ARG classification=public_release
 
-# Exposing the port
-EXPOSE 80
-
 # Pull the image
 FROM ${base_image}:${base_tag}
+
+# Exposing the port
+EXPOSE 80
 
 # Setting up the envionment 
 WORKDIR /opt
