@@ -1,3 +1,4 @@
+import json
 from typing import List, Optional
 from sqlalchemy import create_engine, select, ForeignKey, String, Column, Text
 from sqlalchemy.orm import Session, DeclarativeBase, Mapped, mapped_column, relationship, registry
@@ -10,6 +11,7 @@ Base = mapper_registry.generate_base()
 class Host(Base):
     __tablename__ = "hosts"
     mac: Mapped[str] = mapped_column(String(18), primary_key=True)
+    config: Mapped[str] = mapped_column(String(1000))
 
 class db:
   def __init__(self, engine):
@@ -19,14 +21,15 @@ class db:
       mapper_registry.metadata.create_all(engine)
       Base.metadata.create_all(engine)
   
-  def add_host(self, mac):
+  def add_host(self, mac, config):
     exists = self.host_exists(mac)
     result = {}
     if exists['exists']:
       result['status'] = 'Host already exists'
       result['host'] = exists['host']
     else:
-      host = Host(mac=mac)
+      config = json.dumps(config)
+      host = Host(mac=mac,config=config)
       with Session(self.engine) as session:
         session.add(host)
         session.commit()
