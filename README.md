@@ -9,7 +9,9 @@ Update the config.yaml to be what you want for your defaults
 
 # Run
 ## Prod
-TODO: setup a way for prod to be ran
+```
+sudo docker run -v /etc/batbmp/:/etc/batbmp/ -v /var/batbmp/:/var/batbmp/ -p 80:80 --restart=always --name batbmp -it -d batbmp-backend:latest
+```
 ## Dev
 ```
 python -m fastapi dev app.py
