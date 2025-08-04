@@ -3,6 +3,7 @@ import os
 from utils import database
 
 settings_paths = [
+'./config.yaml.example'
 '/etc/batbmp/config/yaml',
 './config.yaml'
 ]
@@ -17,6 +18,7 @@ def load_settings():
         settings = {**settings, **data}
 
   connection_uri = ''
+  
   database_method = settings['database']['method']
   connection_uri = f'{database_method}://{connection_uri}'
   if 'username' in settings['database']:
