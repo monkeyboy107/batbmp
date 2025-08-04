@@ -9,6 +9,7 @@ os:
   distro: 
   version: 
   appstream: 
+  baseos:
   arch: 
 host:
   name: 

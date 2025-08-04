@@ -5,7 +5,7 @@
 graphical
 # Reboot after installation
 reboot
-repo --name="AppStream" --baseurl={{ mirror.protocol }}:://{{ mirror.host }}/{{ os.distro }}/{{ os.version }}/{{ os.appstream }}/{{ os.arch }}/os
+repo --name="AppStream" --baseurl={{ mirror.protocol }}://{{ mirror.host }}/{{ os.distro }}/{{ os.version }}/{{ os.appstream }}/{{ os.arch }}/os
 
 %post
 {%- for user in users %}
