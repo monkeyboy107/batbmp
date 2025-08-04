@@ -50,7 +50,7 @@ timezone America/Denver --utc
 rootpw --lock
 {%- for user in users %}
 user --groups=wheel --name={{ user.name }}  --iscrypted --lock --gecos="{{ user.full_name }}"
-sshkey --username={{ user.name }} 
+sshkey --username={{ user.name }} "{{ user.ssh_public_key }}"
 {%- endfor %}
 
 %post
