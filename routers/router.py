@@ -1,7 +1,7 @@
 import dependencies
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import HTMLResponse
-from jinja2 import Environment, PackageLoader, select_autoescape
+from utils import templates
 
 router = APIRouter()
 
@@ -9,7 +9,7 @@ router = APIRouter()
 async def evaluate_destenation(mac):
   host = dependencies.settings['database'].find_host(mac)
   if host['status'] == 'Success':
-    config = json.loads(host['host']['config'])
-    return templates.render_template('kickstart.conf.j2', **config)
+    route='kickstart'
   else:
-    raise HTTPException(status_code=404, detail=host['status'])
+    route='register'
+  return templates.render_template('chain.ipxe.j2', scheme=dependencies.settings['server']['scheme'], batbmp_host=dependencies.settings['server']['host'], route=route)
