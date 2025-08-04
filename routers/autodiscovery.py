@@ -5,7 +5,7 @@ from utils import templates
 
 router = APIRouter()
 
-@router.get('/router/{mac}/', tags=['router'], response_class=HTMLResponse)
+@router.get('/autodiscovery/{mac}/', tags=['autodiscovery'], response_class=HTMLResponse)
 async def evaluate_destenation(mac):
   host = dependencies.settings['database'].find_host(mac)
   if host['status'] == 'Success':

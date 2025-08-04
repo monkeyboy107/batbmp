@@ -34,6 +34,9 @@ class routes_tests(unittest.IsolatedAsyncioTestCase):
     result = await result
     self.assertEqual(result['status'], 'Success')
 
+  async def test_autodiscovery(self):
+    pass
+
 def suite():
   suite = unittest.TestSuite()
   suite.addTest(routes_test('test_kickstart'))
