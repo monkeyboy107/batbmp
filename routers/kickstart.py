@@ -1,15 +1,21 @@
 import dependencies
+import json
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import HTMLResponse
 from jinja2 import Environment, PackageLoader, select_autoescape
-from utils import database
+from utils import database, templates
 
 router = APIRouter()
 
-@router.get('/kickstart/{mac}/', tags=['kickstart'])
-async def retrieve_kickstart(mac, response_class=ORJSONResponse):
+@router.get('/kickstart/{mac}/', tags=['kickstart'], response_class=HTMLResponse)
+async def retrieve_kickstart(mac):
   host = dependencies.settings['database'].find_host(mac)
   if host['status'] == 'Success':
-    return host['host']['mac']
+    env = Environment(
+      loader=templates.loader,
+      autoescape=select_autoescape()
+    )
+    config = json.loads(host['host']['config'])
+    return templates.render_template('kickstart.conf.j2', **config)
   else:
     raise HTTPException(status_code=404, detail=host['status'])
