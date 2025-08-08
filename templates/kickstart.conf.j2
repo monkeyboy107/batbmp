@@ -26,6 +26,8 @@ url --url="{{ mirror.protocol }}://{{ mirror.host }}/{{ os.distro }}/{{ os.versi
 %packages
 @^server-product-environment
 @remote-system-management
+{%- for package in packages %}
+{%- endfor %}
 
 %end
 
