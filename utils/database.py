@@ -1,6 +1,6 @@
 import json
 from typing import List, Optional
-from sqlalchemy import create_engine, select, ForeignKey, String, Column, Text
+from sqlalchemy import create_engine, select, ForeignKey, String, Column, Text, update
 from sqlalchemy.orm import Session, DeclarativeBase, Mapped, mapped_column, relationship, registry
 from sqlalchemy_utils import database_exists, create_database
 
@@ -28,19 +28,13 @@ class db:
       result['status'] = 'Host already exists'
       result['host'] = exists['host']
     else:
-      config = json.dumps(config)
-      host = Host(mac=mac,config=config)
-      with Session(self.engine) as session:
-        session.add(host)
-        session.commit()
-      result['status'] = 'Success'
-      result['host'] = host
+      self.update_host(mac, config)
     return result
   
   def find_host(self, mac):
     host = self.host_exists(mac)
     if host['exists']:
-      return {'status': 'Success', 'host': self.host_to_dict(host['host'])}
+      return {'status': 'Success', 'host_object': host['host'], 'host': self.host_to_dict(host['host'])}
     else:
       return {'status': 'Host not found'}
 
@@ -52,20 +46,35 @@ class db:
     return reply
   
   def host_exists(self, mac):
-    session = Session(self.engine)
-    stmt = select(Host).where(Host.mac == mac) 
-    host = session.scalars(stmt)
-    all_hosts = host.all()
-    results = {'status': 'Success', 'host': host}
-    if len(all_hosts) == 0:
-      results['exists'] = False
-    else:
-      results['host'] = all_hosts[0]
-      results['exists'] = True
+    with Session(self.engine) as session:
+      stmt = select(Host).where(Host.mac == mac) 
+      host = session.scalars(stmt)
+      all_hosts = host.all()
+      results = {'status': 'Success', 'host': host}
+      if len(all_hosts) == 0:
+        results['exists'] = False
+      else:
+        results['host'] = all_hosts[0]
+        results['exists'] = True
     return results
 
+  def update_host(self, mac, config):
+    result = {}
+    config = json.dumps(config)
+    with Session(self.engine) as session:
+      if self.host_exists(mac)['exists']:
+        host = self.find_host(mac)['host_object']
+        session.query(Host).filter(Host.mac == mac).update({'config': config})
+        # host.config = config
+      else:
+        host = Host(mac=mac, config=config)
+        session.add(host)
+      session.commit()
+    result['status'] = 'Success'
+    result['host'] = host   
+    return result
+
   def host_to_dict(self, host):
-    print(host)
     return [{column.name: getattr(host, column.name) for column in Host.__table__.columns}][0]
 
 def generate_engine(connection_uri='sqlite:///:memory:'):
