@@ -44,6 +44,13 @@ class db:
     else:
       return {'status': 'Host not found'}
 
+  def find_all_hosts(self):
+    reply = {'status': 'Success'}
+    session = Session(self.engine)
+    query = session.query(Host)
+    reply = {'status': 'Success', 'hosts': query.all()}
+    return reply
+  
   def host_exists(self, mac):
     session = Session(self.engine)
     stmt = select(Host).where(Host.mac == mac) 
@@ -62,4 +69,4 @@ class db:
     return [{column.name: getattr(host, column.name) for column in Host.__table__.columns}][0]
 
 def generate_engine(connection_uri='sqlite:///:memory:'):
-  return create_engine(connection_uri, echo=True)
+  return create_engine(connection_uri, echo=False)
