@@ -1,0 +1,8 @@
+set repo {{ mirror.protocol }}://{{ mirror.host }}/{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os
+set pxeboot ${repo}/images/pxeboot
+set ks {{ server.scheme }}://{{ server.host }}/kickstart/${net0/mac}
+
+kernel ${pxeboot}/vmlinuz initrd=initrd.img inst.repo=${repo} inst.ks=${ks}
+# kernel ${pxeboot}/vmlinuz initrd=initrd.img inst.repo=${repo}
+initrd ${pxeboot}/initrd.img
+boot
