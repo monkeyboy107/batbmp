@@ -6,5 +6,7 @@ if __name__ == '__main__':
   subparsers = parser.add_subparsers(help='Tools', dest='tool')
   client_parser = client.setup_parser(subparsers)
   args = parser.parse_args()
-  # if args.tools
-  print(args)
+  if args.tool:
+    globals()[args.tool].main(args)
+  else:
+    parser.print_help()

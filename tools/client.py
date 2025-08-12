@@ -9,4 +9,4 @@ def setup_parser(subparsers):
   return parser
 
 def main(args):
-  pass
+  print(utils)
