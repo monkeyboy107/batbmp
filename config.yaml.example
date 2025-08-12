@@ -14,7 +14,7 @@ os:
 host:
   name: 
 database:
-  URI: sqlite://file.db
+  uri: sqlite://file.db
 server:
   host: 
   scheme: 
