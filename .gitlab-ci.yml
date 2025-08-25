@@ -2,33 +2,9 @@ stages:
   - release
   - build
 
-release:
-  image: node:alpine3.21
-  stage: release
-  before_script:
-    - apk update
-    - apk add git
-    - npm install @semantic-release/exec
-    - npm install @semantic-release/git
-    - npm install @semantic-release/npm -D
-  script:
-    - npx semantic-release
-  artifacts:
-    paths:
-      - .version.txt
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-
-build:
-  image: docker:24.0.5
-  stage: build
-  services:
-    - docker:24.0.5-dind
-  script:
-    - export IMAGE_TAG=${CI_REGISTRY_IMAGE}:$(cat .version.txt)
-    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
-    - docker build -t ${CI_REGISTRY_IMAGE}:latest -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG 
-    - docker push ${CI_REGISTRY_IMAGE}:latest
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+include:
+  - project: 'monkeyboy107/cicd'
+    ref: v1.0.1
+    file:
+      - gitlab-templates/build-docker.yaml
+      - gitlab-templates/bump-version.yaml
