@@ -4,7 +4,7 @@ stages:
 
 include:
   - project: 'monkeyboy107/cicd'
-    reif: v1.1.7
+    reif: v1.1.8
     file:
       - gitlab-templates/build-docker.yaml
       - gitlab-templates/bump-version.yaml
