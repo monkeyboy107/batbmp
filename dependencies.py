@@ -17,22 +17,7 @@ def load_settings():
         data = yaml.safe_load(stream)
         settings = {**settings, **data}
 
-  connection_uri = ''
-  
-  database_method = settings['database']['method']
-  connection_uri = f'{database_method}://{connection_uri}'
-  if 'username' in settings['database']:
-    database_username = settings['database']['username']
-    connection_uri = f'{connection_uri}{database_username}'
-  if 'password' in settings['database']:
-    databse_password = settings['database']['password']
-    connection_uri = f'{connection_uri}@{database_password}'
-  database_host = settings['database']['host']
-  connection_uri = f'{connection_uri}{database_host}'
-
-  settings['connection_uri'] = connection_uri
-
-  engine = database.generate_engine(settings['connection_uri'])
+  engine = database.generate_engine(settings['database']['uri'])
   db = database.db(engine)
   
   settings['engine'] = engine

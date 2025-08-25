@@ -10,7 +10,7 @@ Update the config.yaml to be what you want for your defaults
 # Run
 ## Prod
 ```
-sudo docker run -v /etc/batbmp/:/etc/batbmp/ -v /var/batbmp/:/var/batbmp/ -p 80:80 --restart=always --name batbmp -it -d batbmp-backend:latest
+docker run -v /etc/batbmp/:/etc/batbmp/ -v /var/batbmp/:/var/batbmp/ -p 80:80 --restart=always --name batbmp -it -d batbmp:latest
 ```
 ## Dev
 ```

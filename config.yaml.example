@@ -5,6 +5,7 @@ users:
 mirror:
   protocol: 
   host: 
+  mirror:
 os:
   distro: 
   version: 
@@ -14,8 +15,7 @@ os:
 host:
   name: 
 database:
-  method: sqlite
-  host: /file.db
+  uri: sqlite://file.db
 server:
   host: 
   scheme: 
