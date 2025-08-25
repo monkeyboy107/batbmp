@@ -6,6 +6,8 @@ release:
   image: node:alpine3.21
   stage: release
   before_script:
+    - apk update
+    - apk add git
     - npm install @semantic-release/npm -D
   script:
     - npx semantic-release
