@@ -11,6 +11,8 @@ FROM ${base_image}:${base_tag}
 EXPOSE 80
 
 # Setting up the envionment 
+RUN apt-get update
+RUN apt-get install vim -y
 WORKDIR /opt
 COPY . /opt
 RUN python -m pip install --no-cache-dir --upgrade -r requirements.txt
