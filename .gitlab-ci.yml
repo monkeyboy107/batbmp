@@ -24,5 +24,6 @@ build:
   script:
     - export IMAGE_TAG=${CI_REGISTRY_IMAGE}:$(cat .version.txt)
     - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker build -t ${CI_REGISTRY_IMAGE}:latest -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG 
+    - docker push ${CI_REGISTRY_IMAGE}:latest
