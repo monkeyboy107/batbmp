@@ -16,6 +16,8 @@ release:
   artifacts:
     paths:
       - .version.txt
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
 
 build:
   image: docker:24.0.5
@@ -28,3 +30,5 @@ build:
     - docker build -t ${CI_REGISTRY_IMAGE}:latest -t $IMAGE_TAG .
     - docker push $IMAGE_TAG 
     - docker push ${CI_REGISTRY_IMAGE}:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
