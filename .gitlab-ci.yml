@@ -16,6 +16,8 @@ release:
   artifacts:
     paths:
       - .version.txt
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
 
 build:
   image: docker:24.0.5
