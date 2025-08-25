@@ -6,9 +6,9 @@ release:
   image: node:alpine3.21
   stage: release
   before_script:
-    - 
+    - npm install @semantic-release/npm -D
   script:
-    - 
+    - npx semantic-release
 
 build:
   image: docker:24.0.5
