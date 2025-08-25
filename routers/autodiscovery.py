@@ -6,7 +6,7 @@ from utils import templates
 router = APIRouter()
 
 @router.get('/autodiscovery/{mac}/', tags=['autodiscovery'], response_class=HTMLResponse)
-async def evaluate_destenation(mac):
+async def evaluate_destination(mac):
   host = dependencies.settings['database'].find_host(mac)
   if host['status'] == 'Success':
     route='kickstart'
