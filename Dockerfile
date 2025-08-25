@@ -1,6 +1,6 @@
 # Defining build tags
 ARG base_image=registry.gitlab.com/monkeyboy107/python
-ARG base_tag=1.0.1
+ARG base_tag=1.0.6
 # Possible classification is public_release public_test private_release private_test
 ARG classification=public_release
 
@@ -11,8 +11,7 @@ FROM ${base_image}:${base_tag}
 EXPOSE 80
 
 # Setting up the envionment 
-RUN apt-get update
-RUN apt-get install vim -y
+RUN dnf install vim -y
 ENV EDITOR=vim
 WORKDIR /opt
 COPY . /opt
