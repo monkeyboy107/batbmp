@@ -8,18 +8,21 @@ release:
   before_script:
     - apk update
     - apk add git
+    - npm install @semantic-release/exec
     - npm install @semantic-release/npm -D
   script:
     - npx semantic-release
+  artifacts:
+    paths:
+      - .version.txt
 
 build:
   image: docker:24.0.5
   stage: build
   services:
     - docker:24.0.5-dind
-  variables:
-    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   script:
+    - export IMAGE_TAG=${CI_REGISTRY_IMAGE}:$(cat .version.txt)
     - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
