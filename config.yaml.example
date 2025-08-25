@@ -5,6 +5,7 @@ users:
 mirror:
   protocol: 
   host: 
+  mirror:
 os:
   distro: 
   version: 

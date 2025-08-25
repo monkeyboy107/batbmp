@@ -1,5 +1,5 @@
 #!ipxe
-set repo {{ mirror.protocol }}://{{ mirror.host }}/{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os
+set repo {{ mirror.protocol }}://{{ mirror.path }}/{{ mirror.host }}/{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os
 set pxeboot ${repo}/images/pxeboot
 set ks {{ server.scheme }}://{{ server.host }}/kickstart/${net0/mac}
 
