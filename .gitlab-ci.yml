@@ -9,6 +9,7 @@ release:
     - apk update
     - apk add git
     - npm install @semantic-release/exec
+    - npm install @semantic-release/git
     - npm install @semantic-release/npm -D
   script:
     - npx semantic-release
