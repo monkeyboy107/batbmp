@@ -1,5 +1,14 @@
 stages:
+  - release
   - build
+
+release:
+  image: node:alpine3.21
+  stage: release
+  before_script:
+    - 
+  script:
+    - 
 
 build:
   image: docker:24.0.5
