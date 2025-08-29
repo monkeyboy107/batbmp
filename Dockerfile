@@ -13,8 +13,8 @@ EXPOSE 80
 # Setting up the envionment 
 RUN dnf install vim -y
 ENV EDITOR=vim
-WORKDIR /opt
-COPY . /opt
+COPY . /opt/batbmp
+WORKDIR /opt/batbmp
 RUN python -m pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Running the release
