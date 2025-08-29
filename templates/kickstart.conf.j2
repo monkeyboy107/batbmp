@@ -21,7 +21,7 @@ network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
 network  --hostname={{ host.name }}
 
 # Use network installation
-url --url="{{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}{% endif %}{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os"
+url --url="{{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}{% endif %}/{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os"
 
 %packages
 @^server-product-environment
