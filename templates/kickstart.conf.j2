@@ -4,7 +4,7 @@ sudo systemctl stop systemd-sleep
 
 graphical
 reboot
-repo --name="AppStream" --baseurl={{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}/{% endif %}/{{ os.distro }}/{{ os.version }}/{{ os.appstream }}/{{ os.arch }}/os
+repo --name="AppStream" --baseurl={{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}{% endif %}/{{ os.distro }}/{{ os.version }}/{{ os.appstream }}/{{ os.arch }}/os
 
 %addon com_redhat_kdump --enable --reserve-mb='auto'
 autostep --autoscreenshot 
@@ -21,7 +21,7 @@ network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
 network  --hostname={{ host.name }}
 
 # Use network installation
-url --url="{{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}/{% endif %}{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os"
+url --url="{{ mirror.protocol }}://{{ mirror.host }}{% if mirror.path %}/{{ mirror.path }}{% endif %}{{ os.distro }}/{{ os.version }}/{{ os.baseos }}/{{ os.arch }}/os"
 
 %packages
 @^server-product-environment
