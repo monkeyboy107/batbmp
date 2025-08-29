@@ -5,7 +5,7 @@ sudo systemctl stop systemd-sleep
 graphical
 reboot
 repo --name="AppStream" --baseurl={{ mirror.protocol }}://{{ mirror.host }}/{{ mirror.path }}/{{ os.distro }}/{{ os.version }}/{{ os.appstream }}/{{ os.arch }}/os
-{{ mirror.path }}
+{% if mirror.path %}{{ mirror.path }}{% endif %}
 
 %addon com_redhat_kdump --enable --reserve-mb='auto'
 autostep --autoscreenshot 
