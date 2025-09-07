@@ -4,16 +4,14 @@ SHELL := /bin/bash
 clean:
 	rm -rf __pycache__ */__pycache__
 
-venv:
+setup:
 	python -m venv venv
-
-setup: venv
-	$(MAKE) activate
+	make activate
 	pip install -r requirements.txt
 
 activate:
 	source venv/bin/activate
 
 test:
-	$(MAKE) activate
+	make activate
 	python -m unittest test/*py
