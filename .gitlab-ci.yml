@@ -4,7 +4,10 @@ stages:
 
 include:
   - project: 'monkeyboy107/cicd'
-    ref: v1.0.1
+    ref: v1.2.0
     file:
       - gitlab-templates/build-docker.yaml
       - gitlab-templates/bump-version.yaml
+      - gitlab-templates/sast-semgrep.yaml
+      - gitlab-templates/dast-zap.yaml
+      - gitlab-templates/lint-ruff.yaml
