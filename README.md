@@ -17,4 +17,15 @@ docker run -v /etc/batbmp/:/etc/batbmp/ -v /var/batbmp/:/var/batbmp/ -p 80:80 --
 python -m fastapi dev app.py
 ```
 # Workflow
-When at the end of commit your code to the branch `unstable`
+At the end of the day, rebase from `main`
+
+## Rebasing
+When you are ready to merge code into `main` rebase `main` into current branch using the following
+```
+git checkout main
+git pull
+git rebase main YOUR_CURRENT_BRANCH
+```
+
+## Commit message format
+[We use angular commit scheme](https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md)
