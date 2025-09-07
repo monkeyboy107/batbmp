@@ -16,3 +16,5 @@ docker run -v /etc/batbmp/:/etc/batbmp/ -v /var/batbmp/:/var/batbmp/ -p 80:80 --
 ```
 python -m fastapi dev app.py
 ```
+# Workflow
+When at the end of commit your code to the branch `unstable`
