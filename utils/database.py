@@ -1,7 +1,6 @@
 import json
-from typing import List, Optional
-from sqlalchemy import create_engine, select, ForeignKey, String, Column, Text, update
-from sqlalchemy.orm import Session, DeclarativeBase, Mapped, mapped_column, relationship, registry
+from sqlalchemy import create_engine, select, String
+from sqlalchemy.orm import Session, Mapped, mapped_column, registry
 from sqlalchemy_utils import database_exists, create_database
 
 

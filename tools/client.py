@@ -1,4 +1,3 @@
-import utils
 import dependencies
 import json
 import yaml
@@ -29,7 +28,7 @@ def edit_host(args):
   for mac in args.macs:
     host = db.find_host(mac)['host']
     host['config'] = json.loads(host['config'])
-    if output == None:
+    if output is None:
       output = 'yaml'
     filename = f'/tmp/{mac}-{datetime.datetime.now()}.{args.output}'
     with open(filename, 'w') as stream:

@@ -1,6 +1,5 @@
 import unittest
 import os
-import asyncio
 import dependencies
 from utils import database
 from routers import kickstart, register

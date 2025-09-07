@@ -1,5 +1,4 @@
 import dependencies
-import utils
 from fastapi import APIRouter
 
 router = APIRouter()
