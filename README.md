@@ -1,12 +1,3 @@
-# Setup
-Run the following commands to setup your environment
-```
-make setup
-source venv/bin/activate
-cp config.yaml.example config.yaml
-```
-Update the config.yaml to be what you want for your defaults
-
 # Run
 ## Prod
 ```
@@ -29,3 +20,15 @@ git rebase main YOUR_CURRENT_BRANCH
 
 ## Commit message format
 [We use angular commit scheme](https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md)
+
+## Contributing
+
+### Development Environment
+This project uses EL 9.3 as the assumed development environment.
+To set up a development environment, follow these steps:
+
+- Install `make` using your package manager if it's not already installed.
+- Run `make setup` to create a virtual environment and install dependencies.
+- Activate the virtual environment with `source venv/bin/activate`.
+- Create a local `config.yaml` file by copying the example file `config.yaml.example`.
+- Update the config.yaml to be what you want for your defaults
