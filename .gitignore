@@ -214,5 +214,3 @@ config.yaml
 
 # db
 *.db
-.idea
-.nogit
