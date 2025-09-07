@@ -1,0 +1,7 @@
+[tool.ruff]
+indent-width = 2
+[tool.ruff.lint.per-file-ignores]
+"test/routes.py" = ["F821"]
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-line-length = "dynamic"

@@ -1,5 +1,5 @@
 import dependencies
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 from utils import templates
 

@@ -2,8 +2,7 @@ import dependencies
 import json
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import HTMLResponse
-from jinja2 import Environment, PackageLoader, select_autoescape
-from utils import database, templates
+from utils import templates
 
 router = APIRouter()
 
