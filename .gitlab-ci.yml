@@ -3,6 +3,15 @@ stages:
   - release
   - build
 
+sast_semgrep_should_fail:
+  image: rockylinux:9.3
+  stage: test
+  script:
+    - ls
+  needs:
+    - job: sast_semgrep
+      artifacts: true
+
 include:
   - project: 'monkeyboy107/cicd'
     ref: v1.2.0
