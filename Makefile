@@ -1,6 +1,5 @@
-.PHONY: clean setup activate test
+PHONY: clean setup activate test
 SHELL := /bin/bash
-V = source venv/bin/activate;
 
 clean:
 	rm -rf __pycache__ */__pycache__
@@ -9,7 +8,12 @@ venv:
 	python -m venv venv
 
 setup: venv
-	$(V) pip install -r requirements.txt
+	$(MAKE) activate
+	pip install -r requirements.txt
 
-test: venv
-	$(V) python -m unittest test/*py
+activate:
+	source venv/bin/activate
+
+test:
+	$(MAKE) activate
+	python -m unittest test/*py

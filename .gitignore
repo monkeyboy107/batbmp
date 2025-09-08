@@ -215,4 +215,3 @@ config.yaml
 
 # db
 *.db
-.vagrant/

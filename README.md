@@ -24,19 +24,6 @@ git rebase main YOUR_CURRENT_BRANCH
 ## Contributing
 
 ### Development Environment
-
-#### Vagrant Development Environment Setup (preferred)
-This project uses Vagrant to create a consistent development environment.
-To set up the Vagrant environment, follow these steps:
-- Install Vagrant and the Libvirt.
-- Issue a `vagrant up` to start a clean environment.
-- Run `vagrant ssh` to log into the virtual machine.
-
-##### Caveats
-Currently, the Vagrantfile assumes that you have a working Libvirt installation.
-In the future, Virtualbox may be supported as an alternative provider.
-
-#### Local Development Environment Setup
 This project uses EL 9.3 as the assumed development environment.
 To set up a development environment, follow these steps:
 
